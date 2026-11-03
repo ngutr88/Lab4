@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The example's anh image is not supplied; reuse anh1. -->
+    <item name="anh" type="drawable">@drawable/anh1</item>
+</resources>

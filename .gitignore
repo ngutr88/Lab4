@@ -1,0 +1,30 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Generated output and local IDE settings
+**/build/
+.idea/
+.kotlin/
+*.jks
+*.keystore
+.env
+.env.*
+
+# Other projects sharing this workspace
+/lab2/
+/Lab3/
+/Lab3Practice/
+/Lab3v1/

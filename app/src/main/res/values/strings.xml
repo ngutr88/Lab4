@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lab4</string>
+    <string name="friends_title">Danh sách bạn bè</string>
+    <string name="add_friend">Thêm mới</string>
+    <string name="friend_name">Tên bạn bè</string>
+    <string name="friend_detail">Thông tin chi tiết</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="name_required">Vui lòng nhập tên</string>
+</resources>
+
