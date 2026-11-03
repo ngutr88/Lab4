@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp" android:fitsSystemWindows="true">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/quiz_title" android:textSize="26sp"
+        android:textColor="#1D1B20" android:gravity="center" android:paddingBottom="12dp" />
+    <Button android:id="@+id/add" android:layout_width="wrap_content" android:layout_height="48dp"
+        android:layout_gravity="end" android:text="@string/add_action" android:textAllCaps="false" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:id="@+id/questions" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+            <include layout="@layout/question_preview" />
+        </LinearLayout>
+    </ScrollView>
+    <Button android:id="@+id/submit" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:minHeight="48dp" android:paddingHorizontal="32dp" android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp" android:background="@drawable/button_background"
+        android:text="@string/submit" android:textColor="#FFFFFF" android:textAllCaps="false" />
+</LinearLayout>

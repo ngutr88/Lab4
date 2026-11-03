@@ -1,0 +1,24 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:padding="16dp" android:fitsSystemWindows="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:id="@+id/editor_title" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/add_title" android:textSize="26sp" android:textColor="#1D1B20" android:layout_marginBottom="20dp" />
+        <EditText android:importantForAutofill="no" android:id="@+id/question" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/question_hint" android:inputType="textCapSentences|textMultiLine" />
+        <EditText android:importantForAutofill="no" android:id="@+id/option_a" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/option_1" android:inputType="textCapSentences" />
+        <EditText android:importantForAutofill="no" android:id="@+id/option_b" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/option_2" android:inputType="textCapSentences" />
+        <EditText android:importantForAutofill="no" android:id="@+id/option_c" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/option_3" android:inputType="textCapSentences" />
+        <EditText android:importantForAutofill="no" android:id="@+id/option_d" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/option_4" android:inputType="textCapSentences" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/correct_label" android:layout_marginTop="16dp" />
+        <RadioGroup android:id="@+id/correct" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <RadioButton android:id="@+id/correct_a" android:layout_width="match_parent" android:layout_height="48dp" android:text="@string/answer_a" />
+            <RadioButton android:id="@+id/correct_b" android:layout_width="match_parent" android:layout_height="48dp" android:text="@string/answer_b" />
+            <RadioButton android:id="@+id/correct_c" android:layout_width="match_parent" android:layout_height="48dp" android:text="@string/answer_c" />
+            <RadioButton android:id="@+id/correct_d" android:layout_width="match_parent" android:layout_height="48dp" android:text="@string/answer_d" />
+        </RadioGroup>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:orientation="horizontal">
+            <Button android:id="@+id/cancel" android:layout_width="80dp" android:layout_height="48dp" android:background="@drawable/button_background" android:textColor="#FFFFFF" android:text="@string/cancel" android:textAllCaps="false" />
+            <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+            <Button android:id="@+id/save" android:layout_width="150dp" android:layout_height="48dp" android:background="@drawable/button_background" android:textColor="#FFFFFF" android:text="@string/add_question" android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

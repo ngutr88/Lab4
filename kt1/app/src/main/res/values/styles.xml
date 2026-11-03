@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Kt1" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:colorAccent">#6750A4</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">#FFFBFE</item>
+        <item name="android:navigationBarColor">#FFFBFE</item>
+    </style>
+</resources>

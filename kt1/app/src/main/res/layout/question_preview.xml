@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="16dp"
+    android:layout_marginTop="12dp" android:background="@drawable/card_background">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/sample_question" android:textSize="16sp" android:textColor="#49454F" />
+    <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/sample_a" />
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/sample_b" />
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/sample_c" />
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/sample_d" />
+    </RadioGroup>
+</LinearLayout>
