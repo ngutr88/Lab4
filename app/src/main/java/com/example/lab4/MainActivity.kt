@@ -7,20 +7,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.json.JSONArray
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
-    private val friends = mutableListOf<ItemClass>()
-    val friendItems: List<ItemClass>
-        get() = friends
-    private val friendAdapter = MyAdapter(this)
+    lateinit var rcv: RecyclerView
+    lateinit var adapter: MyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,67 +31,50 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val saved = getSharedPreferences("friends", MODE_PRIVATE).getString("items", null)
-        val items = JSONArray(saved ?: "[]")
-        if (saved == null) friends.addAll(ListItem.map { it.copy() })
-        for (index in 0 until items.length()) {
-            val item = items.getJSONObject(index)
-            val iconIndex = item.optInt("iconIndex", index % ListItem.size)
-            val icon = ListItem.getOrElse(iconIndex) { ListItem.first() }.icon
-            friends.add(ItemClass(icon, item.getString("name"), item.getString("detail")))
-        }
-        findViewById<RecyclerView>(R.id.rcv).apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = friendAdapter
-        }
-        findViewById<Button>(R.id.bt_add).setOnClickListener { showAddFriendDialog() }
+        rcv = findViewById(R.id.rcv)
+        adapter = MyAdapter(this)
+        rcv.layoutManager = LinearLayoutManager(this)
+        rcv.adapter = adapter
+        findViewById<Button>(R.id.bt_add).setOnClickListener { showAddDialog() }
+
     }
 
-    private fun showAddFriendDialog() {
-        val name = EditText(this).apply {
+    private fun showAddDialog() {
+        val nameInput = EditText(this).apply {
             setHint(R.string.friend_name)
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
         }
-        val detail = EditText(this).apply {
+        val detailInput = EditText(this).apply {
             setHint(R.string.friend_detail)
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
         }
-        val fields = LinearLayout(this).apply {
+        val form = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            val padding = (24 * resources.displayMetrics.density).toInt()
-            setPadding(padding, padding / 2, padding, 0)
-            addView(name)
-            addView(detail)
+            val spacing = (24 * resources.displayMetrics.density).toInt()
+            setPadding(spacing, spacing / 2, spacing, 0)
+            addView(nameInput)
+            addView(detailInput)
         }
         val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.add_friend)
-            .setView(fields)
+            .setView(form)
             .setNegativeButton(R.string.cancel, null)
             .setPositiveButton(R.string.save, null)
             .create()
         dialog.setOnShowListener {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                val enteredName = name.text.toString().trim()
-                if (enteredName.isEmpty()) {
-                    name.error = getString(R.string.name_required)
+                val name = nameInput.text.toString().trim()
+                if (name.isEmpty()) {
+                    nameInput.error = getString(R.string.name_required)
                     return@setOnClickListener
                 }
-                val icon = ListItem[friends.size % ListItem.size].icon
-                friends.add(ItemClass(icon, enteredName, detail.text.toString().trim()))
-                friendAdapter.notifyItemInserted(friends.lastIndex)
-                val items = JSONArray()
-                friends.forEach { friend ->
-                    items.put(JSONObject().put("name", friend.name).put("detail", friend.detail)
-                        .put("iconIndex", ListItem.indexOfFirst { it.icon == friend.icon }))
-                }
-                getSharedPreferences("friends", MODE_PRIVATE).edit()
-                    .putString("items", items.toString()).apply()
-                findViewById<RecyclerView>(R.id.rcv).smoothScrollToPosition(friends.lastIndex)
+                ListItem.add(ItemClass(R.drawable.anh1, name, detailInput.text.toString().trim()))
+                adapter.notifyItemInserted(ListItem.lastIndex)
+                rcv.smoothScrollToPosition(ListItem.lastIndex)
                 dialog.dismiss()
             }
         }
         dialog.show()
     }
 }
-
 

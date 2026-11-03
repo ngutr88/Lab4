@@ -18,11 +18,14 @@ class MyAdapter(val context: MainActivity) : RecyclerView.Adapter<MyHolder>() {
 
     // Gán dữ liệu của phần tử tại position vào các View của dòng.
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        val item = context.friendItems[position]
+
+        val item = ListItem[position]
         holder.ivIcon.setImageResource(item.icon)
         holder.tvName.text = item.name
         holder.tvDetail.text = item.detail
     }
 
-    override fun getItemCount(): Int = context.friendItems.size
+    override fun getItemCount(): Int {
+        return ListItem.size
+    }
 }
